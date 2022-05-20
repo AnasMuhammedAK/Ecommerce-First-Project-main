@@ -1,0 +1,42 @@
+<%- include('../partials/admin-head') %>
+<%- include('../partials/admin-sidebar') %>
+<%- include('../partials/admin-navbar') %>
+<section>
+    <div class="col-12">
+        <div>
+            <a href="/admin/add-category" class="btn btn-success float-end mt-4 ">Add New Category</a>
+        </div>
+        <div class="bg-light rounded h-100 p-4">
+            <h6 class="mb-4">Categories</h6>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        
+                        <tr>
+                            <th scope="col">Images</th>
+                           
+                            <th scope="col">Category</th>
+                           
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <% categories.forEach((x) => { %>
+                        <tr>
+                            <th scope="row"><img style="width: 50px; height: 50px;" src="/productImages/<%=x._id %>.jpg" alt=""></th>
+                            
+                            <td><%=x.category %></td>
+                            
+                            <td><a  href="/admin/edit-category"><i class="bi bi-pencil-square"></i></a></td>
+                            <td><a  href="/admin/delete-category"><i class="bi bi-trash-fill"></i></a></td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include('../partials/admin-foot') %>
