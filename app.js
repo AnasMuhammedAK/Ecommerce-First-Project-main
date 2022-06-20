@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const fileUpload = require('express-fileupload')
+// const fileUpload = require('express-fileupload')
 const bodyParser = require('body-parser')
 const adminRouter = require('./routes/admin');
 const usersRouter = require('./routes/users');
@@ -11,6 +11,10 @@ const ejs = require('ejs')
 const app = express();
 const db=require('./config/connection')
 const session = require('express-session')
+const flash=require('connect-flash')
+const multer  = require('multer')
+const Razorpay = require('razorpay')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -35,8 +39,9 @@ app.use((req,res,next)=>{
   res.set('Cache-Control','no-store')
   next()
 })
+app.use(flash())
 // app.use(express.urlencoded({ extended: false }))
-app.use(fileUpload())
+// app.use(fileUpload())
 app.use('/', usersRouter);
 app.use('/admin', adminRouter); 
 
